@@ -7,19 +7,20 @@ if ! [[ -x $rc ]]; then
 	exit 1
 fi
 
+stat=0
+if ! $rc status >/dev/null; then
+	stat=1
+fi
+
 function start() {
-	if ! $rc status; then
+	if [[ $stat -eq 1 ]]; then
 		$rc start
-	else
-		echo already running
 	fi
 }
 
 function stop() {
-	if $rc status; then
+	if [[ $stat -eq 0 ]]; then
 		$rc stop
-	else
-		echo already stopped
 	fi
 }
 
