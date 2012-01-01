@@ -23,5 +23,5 @@ function stop() {
 	fi
 }
 
-echo stop
+stop
 
