@@ -7,7 +7,7 @@ if ! [[ -x $rc ]]; then
 	exit 1
 fi
 
-function start() {
+start() {
 	if ! $rc status; then
 		$rc start
 	else
@@ -15,7 +15,7 @@ function start() {
 	fi
 }
 
-function stop() {
+stop() {
 	if $rc status; then
 		$rc stop
 	else
