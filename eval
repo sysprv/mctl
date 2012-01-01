@@ -1,13 +1,13 @@
-#! /bin/ksh
+#! /usr/pkg/bin/bash
 
-rc=/etc/rc.d/sshd
+readonly rc=/etc/rc.d/sshd
 
 if ! [[ -x $rc ]]; then
 	echo bad rc
 	exit 1
 fi
 
-start() {
+function start() {
 	if ! $rc status; then
 		$rc start
 	else
@@ -15,7 +15,7 @@ start() {
 	fi
 }
 
-stop() {
+function stop() {
 	if $rc status; then
 		$rc stop
 	else
