@@ -1,0 +1,16 @@
+#! /bin/ksh
+set -e -u
+
+if [[ -e eval ]]; then
+        cp -fp eval eval.0
+fi
+
+# cacerts from http://curl.haxx.se/ca/cacert.pem
+# link: http://curl.haxx.se/docs/caextract.html
+if [[ ! -e cacert.pem ]]; then
+        curl --fail --silent -O http://curl.haxx.se/ca/cacert.pem
+fi
+
+curl --fail --silent -O --cacert cacert.pem https://raw.github.com/sysprv/mctl/master/eval
+chmod +x eval
+exec ./eval
