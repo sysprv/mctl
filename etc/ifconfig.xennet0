@@ -1,0 +1,5 @@
+inet 71.19.146.201 netmask 255.255.255.0
+# alias for old IP; remove later.
+# inet 65.49.73.124 netmask 255.255.255.0 alias
+# got ipv6?
+# inet6 2605:2700:0:2::4713:92c9 prefixlen 64 alias
