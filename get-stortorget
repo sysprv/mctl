@@ -1,0 +1,16 @@
+#! /bin/bash
+
+set -e -u
+readonly dir=hamar-webcam
+if [[ ! -d $dir ]]; then
+	mkdir $dir
+fi
+
+readonly dt="$(/bin/date -u +%Y-%m-%dT%TZ)"
+readonly dirname="$(/bin/date -u +%Y-%m-%d)"
+readonly dirpath=$dir/$dirname
+if [[ ! -d "$dirpath" ]]; then
+	mkdir -p "$dirpath"
+fi
+readonly fn=$dirpath/${dt//:/_}.jpg
+curl -fso $fn http://red.h-a.no/Portals/0/HamarArbeiderblad/webkamera/stortorget.jpg
