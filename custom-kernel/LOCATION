@@ -1,1 +1,1 @@
-/usr/src/sys/arch/i386/conf/XEN3PAE_DOMU_NOLKM
+/usr/src/sys/arch/amd64/conf/XEN3_DOMU_NOLKM
