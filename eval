@@ -1,7 +1,7 @@
 #! /usr/pkg/bin/bash
 
 function get() {
-	curl --fail --cacert cacert.pem "$@"
+	/usr/pkg/bin/curl --fail --cacert cacert.pem "$@"
 }
 
 # firewall
@@ -14,7 +14,7 @@ if get -O $pfn https://raw.github.com/sysprv/mctl/master/etc/pf.ssh_clients; the
 	if ! test -f $pf || ! diff -q $pf $pfn; then
 		/bin/mv $pf $pfo
 		/bin/mv $pfn $pf
-		pfctl -t ssh_clients -T replace -f $pf
+		/sbin/pfctl -t ssh_clients -T replace -f $pf
 	fi
 fi
 
