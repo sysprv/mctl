@@ -10,9 +10,9 @@ pf=/etc/pf.ssh_clients
 pfn=pf.ssh_clients.new
 pfo=pf.ssh_clients.old
 
-if get -o $pfn https://raw.github.com/sysprv/mctl/master/etc/pf.ssh_clients; then
+if get -s -o $pfn https://raw.github.com/sysprv/mctl/master/etc/pf.ssh_clients; then
 	if ! test -f $pf || ! diff -q $pf $pfn; then
-		/bin/mv $pf $pfo
+		[[ -e $pf ]] && /bin/mv $pf $pfo
 		/bin/mv $pfn $pf
 		/sbin/pfctl -t ssh_clients -T replace -f $pf
 	fi
