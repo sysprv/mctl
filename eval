@@ -1,5 +1,26 @@
 #! /usr/pkg/bin/bash
 
+function get() {
+	curl --fail --cacert cacert.pem "$@"
+}
+
+# firewall
+
+pf=/etc/pf.ssh_clients
+pfn=pf.ssh_clients.new
+pfo=pf.ssh_clients.old
+
+if get -O $pfn https://raw.github.com/sysprv/mctl/master/etc/pf.ssh_clients; then
+	if ! test -f $pf || ! diff -q $pf $pfn; then
+		/bin/mv $pf $pfo
+		/bin/mv $pfn $pf
+		pfctl -t ssh_clients -T replace -f $pf
+	fi
+fi
+
+
+# ssh
+
 readonly rc=/etc/rc.d/sshd
 
 if ! [[ -x $rc ]]; then
