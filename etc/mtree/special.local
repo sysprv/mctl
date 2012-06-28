@@ -1,0 +1,3 @@
+# http://permalink.gmane.org/gmane.os.netbsd.ports.x86-64/3685
+./etc/rc.d/xdm type=file mode=0555 optional
+./etc/rc.d/xfs type=file mode=0555 optional
